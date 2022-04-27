@@ -1686,7 +1686,7 @@ where
 	}
 
 	fn new_pending_transaction_filter(&self) -> Result<U256> {
-		self.create_filter(FilterType::FilterPool)
+		self.create_filter(FilterType::Transaction)
 	}
 
 	fn filter_changes(&self, index: Index) -> Result<FilterChanges> {
