@@ -862,6 +862,10 @@ where
 		)
 	}
 
+	fn get_pending_txs(&self) -> Result<TransactionPool> {
+		Ok(self.pool.ready())
+	}
+
 	fn call(&self, request: CallRequest, _: Option<BlockNumber>) -> Result<Bytes> {
 		let hash = self.client.info().best_hash;
 
@@ -1686,7 +1690,7 @@ where
 	}
 
 	fn new_pending_transaction_filter(&self) -> Result<U256> {
-		Err(internal_err("Method not available."))
+		self.create_filter(FilterType::Transaction)
 	}
 
 	fn filter_changes(&self, index: Index) -> Result<FilterChanges> {
